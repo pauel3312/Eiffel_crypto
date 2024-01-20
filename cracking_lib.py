@@ -44,13 +44,13 @@ def freq_texte(s: str) -> list[float]:
     return frequences
 
 
-def distance(l1: list, l2: list):
+def distance(l1: list, l2: list) -> float:
     if len(l1) != len(l2):
         raise Exception("les listes ne font pas la même longueur")
 
     distance_temp = 0
-    for i in range(len(l1)):
-        distance_temp += (l1[i] - l2[i])**2
+    for indice in range(len(l1)):
+        distance_temp += (l1[indice] - l2[indice])**2
 
     return distance_temp
 
@@ -68,3 +68,17 @@ def cle(s: str) -> int:
     return key
 
 
+def freq_vigenere(s: str, n: int) -> str:
+    textes = [""]*n
+
+    for caractere in caracteres_ignores:
+        s = s.replace(caractere, "")
+
+    for indice, caractere in enumerate(s):
+        textes[indice % n] += caractere
+    cle_en_construction = ""
+
+    for texte in textes:
+        cle_en_construction += caracteres_autorises[cle(texte)]
+
+    return cle_en_construction

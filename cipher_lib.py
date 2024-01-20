@@ -1,5 +1,6 @@
 caracteres_chiffres = "abcdefghijklmnopqrstuvwxyz"
-caracteres_autorises = caracteres_chiffres + " \n'.,"
+caracteres_ignores = " \n'.,"
+caracteres_autorises = caracteres_chiffres + caracteres_ignores
 
 
 def decalage(c: str, n: int) -> str:
