@@ -1,23 +1,20 @@
 from cipher_lib import *
 
-frequences_theoriques_fr = [0.0840, 0.0106,
-                            0.0303, 0.0418,
-                            0.1726, 0.0112,
-                            0.0127, 0.0092,
-                            0.0734, 0.0031,
-                            0.0005, 0.0601,
-                            0.0296, 0.0713,
-                            0.0526, 0.0301,
-                            0.0099, 0.0655,
-                            0.0808, 0.0707,
-                            0.0574, 0.0132,
-                            0.0004, 0.0045,
-                            0.0030, 0.0012]
+palier_incidence = .07
 
-dict_lettres_frequences_theoriques = {}
-
-for i, freq in enumerate(frequences_theoriques_fr):
-    dict_lettres_frequences_theoriques[caracteres_chiffres[i]] = freq
+frequences_theoriques_fr = [.0840, .0106,
+                            .0303, .0418,
+                            .1726, .0112,
+                            .0127, .0092,
+                            .0734, .0031,
+                            .0005, .0601,
+                            .0296, .0713,
+                            .0526, .0301,
+                            .0099, .0655,
+                            .0808, .0707,
+                            .0574, .0132,
+                            .0004, .0045,
+                            .0030, .0012]
 
 
 # il existe autant de clés de chiffrement césar que la longueur de l'ensemble de caractères que l'on peut chiffrer.
@@ -79,6 +76,27 @@ def freq_vigenere(s: str, n: int) -> str:
     cle_en_construction = ""
 
     for texte in textes:
-        cle_en_construction += caracteres_autorises[cle(texte)]
+        cle_en_construction += caracteres_chiffres[cle(texte)]
 
     return cle_en_construction
+
+
+def calcul_incidence(s: str) -> float:
+    resultat = 0
+    for i, caractere in enumerate(caracteres_chiffres):
+        ni = s.count(caractere)
+        resultat += (ni*(ni-1) / (len(caracteres_chiffres)*(len(caracteres_chiffres)-1)))
+    return resultat
+
+
+def meilleur_incidence(s: str) -> int:
+    for n in range(1, len(s)):
+        texte_a_verifier = ""
+        i = 0
+
+        while n*i < len(s):
+            texte_a_verifier += s[n*i]
+            i += 1
+
+        if calcul_incidence(texte_a_verifier) > palier_incidence:
+            return n
