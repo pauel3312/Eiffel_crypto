@@ -47,7 +47,3 @@ def dechiffrement_vigenere(s: str, k: str) -> str:
         cle_de_dechiffrement += caracteres_chiffres[indice_de_dechiffrement]
 
     return chiffrement_vigenere(s, cle_de_dechiffrement)
-
-
-if __name__ == "__main__":
-    print(dechiffrement_vigenere(chiffrement_vigenere("nadine n'est pas un velociraptor.", "nadine"), "nadine"))
