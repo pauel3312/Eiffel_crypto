@@ -9,3 +9,10 @@ def brute_force(s: str) -> list[str]:
     return chaines_possibles
 
 
+def freq_lettre(s: str, c: str) -> float:
+    nb_appartitons_c = 0
+    for caractere in s:
+        if caractere == c:
+            nb_appartitons_c += 1
+
+    return nb_appartitons_c/len(s)
