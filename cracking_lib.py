@@ -23,3 +23,14 @@ def freq_texte(s: str) -> list[float]:
     for caractere in caracteres_chiffres:
         frequences.append(freq_lettre(s, caractere))
     return frequences
+
+
+def distance(l1: list, l2: list):
+    if len(l1) != len(l2):
+        raise Exception("les listes ne font pas la même longueur")
+
+    distance_temp = 0
+    for i in range(len(l1)):
+        distance_temp += (l1[i] - l2[i])**2
+
+    return distance_temp
