@@ -59,7 +59,7 @@ def cle(s: str) -> int:
     frequences = freq_texte(s)
     min_distance = distance(frequences, frequences_theoriques_fr)
     key = 0
-    for k in range(1, 25):
+    for k in range(1, len(caracteres_chiffres)):
         frequences = frequences[-1:] + frequences[:-1]
         distance_temp = distance(frequences, frequences_theoriques_fr)
         if distance_temp < min_distance:
